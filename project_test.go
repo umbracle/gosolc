@@ -18,7 +18,7 @@ func TestProject_Fixtures(t *testing.T) {
 		t.Run(e.Name(), func(t *testing.T) {
 			testPath := filepath.Join(fixturesPath, e.Name())
 
-			project, err := NewProject(WithContractsDir(testPath))
+			project, err := NewProject(WithContractsDir(testPath), WithRuns(200))
 			require.NoError(t, err)
 
 			res, err := project.Compile()

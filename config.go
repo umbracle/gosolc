@@ -9,6 +9,7 @@ type Config struct {
 	ContractsDir    string
 	ArtifactsDir    string
 	SolidityVersion string
+	Runs            uint64
 }
 
 func DefaultConfig() *Config {
@@ -35,5 +36,11 @@ func WithArtifactsDir(artifactsDir string) Option {
 func WithContractsDir(contractsDir string) Option {
 	return func(c *Config) {
 		c.ContractsDir = contractsDir
+	}
+}
+
+func WithRuns(runs uint64) Option {
+	return func(c *Config) {
+		c.Runs = runs
 	}
 }

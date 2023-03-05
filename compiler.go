@@ -64,7 +64,8 @@ var inputDesc = `{
 	},
 	"settings": {
 		"optimizer": {
-			"runs": 200
+			"enabled": {{.Enabled}},
+			"runs": {{.Runs}}
 		},
 		"outputSelection": {
 			"*": {
@@ -85,7 +86,9 @@ var inputDesc = `{
 
 func Compile(path string, input *solcInput) (*solcOutput, error) {
 	tmplInput := map[string]interface{}{
-		"Files": input.files,
+		"Files":   input.files,
+		"Runs":    input.config.Runs,
+		"Enabled": input.config.Runs != 0,
 	}
 	tmpl, err := template.New("input").Parse(inputDesc)
 	if err != nil {
